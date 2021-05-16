@@ -5,6 +5,7 @@ import de.torluoglu.skllsmanager.repo.PersonRepo;
 import de.torluoglu.skllsmanager.exception.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class PersonService
                 .orElseThrow( ()-> new PersonNotFoundException( "Person by id: " + id + "was not found!" ));
     }
 
+    @Transactional
     public void deletePerson ( final Long id)
     {
         personRepo.deletePersonById( id );
